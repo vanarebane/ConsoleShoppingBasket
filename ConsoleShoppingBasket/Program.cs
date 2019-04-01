@@ -28,18 +28,18 @@ namespace ConsoleShoppingBasket.Start
         static void Main()
         {
 
-            var inventory = new Inventory<string, Double, string, int>();
+            var shop = new Cart();
 
-            inventory.addItem("Banana", 2.2, "Yellow and with nice curve");
-            inventory.addItem("Milk", 3.2, "Goes well with coffee");
-            inventory.addItem("Bread", 4, "The most expensive we have");
-            inventory.addItem("Beans", 1.2, "Kidney shaped brown things stored in shiny silver cylinder");
-            inventory.addItem("Apple", 1599, "This year's model, expires in a year");
-            inventory.addItem("Beer", 2.5, "It bubbles, it fizzes!");
-            inventory.addItem("Coffee", 15.5, "Finest brand!");
-            inventory.addItem("Suggar", 11, "Makes things sweet");
-            inventory.addItem("Muffins", 3.2, "No raisins included");
-
+            shop.AddItem(new InventoryItem { Name = "Banana", Price = 2.2, Description = "Yellow and with nice curve" });
+            shop.AddItem(new InventoryItem { Name = "Milk", Price = 3.2, Description = "Goes well with coffee" });
+            shop.AddItem(new InventoryItem { Name = "Bread", Price = 4, Description = "The most expensive we have" });
+            shop.AddItem(new InventoryItem { Name = "Beans", Price = 1.2, Description = "Kidney shaped brown things stored in shiny silver cylinder" });
+            shop.AddItem(new InventoryItem { Name = "Apple", Price = 1599, Description = "This year's model, expires in a year" });
+            shop.AddItem(new InventoryItem { Name = "Beer", Price = 2.5, Description = "It bubbles, it fizzes!" });
+            shop.AddItem(new InventoryItem { Name = "Coffee", Price = 15.5, Description = "Finest brand!" });
+            shop.AddItem(new InventoryItem { Name = "Suggar", Price = 11, Description = "Makes things sweet" });
+            shop.AddItem(new InventoryItem { Name = "Muffins", Price = 3.2, Description = "No raisins included" });
+            
             PrintMessage.Hello();
             PrintMessage.Beginning();
 
@@ -49,20 +49,22 @@ namespace ConsoleShoppingBasket.Start
                 switch (lines[0])
                 {
                     case "browse":
-                        inventory.Browse();
+                        PrintMessage.WeHave();
+                        shop.Browse();
                         PrintMessage.BrowsingActions();
                         break;
                     case "add":
-                        inventory.AddToCart(int.Parse(lines[1]), lines[2]);
+                        shop.AddToBasket(int.Parse(lines[1]), lines[2]);
                         break;
                     case "remove":
-                        inventory.RemoveFromCart(int.Parse(lines[1]), lines[2]);
+                        shop.RemoveFromBasket(int.Parse(lines[1]), lines[2]);
                         break;
                     case "basket":
-                        inventory.Basket();
+                        PrintMessage.CurrentlyInBasket();
+                        shop.Basket();
                         break;
                     case "total":
-                        inventory.Total();
+                        shop.Total();
                         break;
                     case "exit":
                         inTheShopLoop = false;
