@@ -13,12 +13,16 @@ namespace ConsoleShoppingBasket.Interface
             WriteLine("Welcome to our Convenient Console Store");
         public static void Beginning() =>
             Suggest("Start with commands like: ", "browse, basket, total, exit");
-        public static void BrowsingActions() =>
-            Suggest("To add to cart use command like: ", "add 2 banana");
+
+        public static void BrowsingActions()
+        {
+            Suggest("To add to cart, use command like: ", "add 2 banana");
+            Suggest("To remove from cart, use command like: ", "remove 1 banana");
+        }
         public static void WeHave() =>
             Message("Goods currently in stock:");
         public static void CurrentlyInBasket() =>
-            Message("Currently in your basket:");     
+            Message("Currently in your basket:");
         public static void EmptyBasket() =>
             Error("Basket is empty. Add some now!");  
         public static void WeDontHave(string item) =>
@@ -29,5 +33,8 @@ namespace ConsoleShoppingBasket.Interface
             Message("Now you have " + item + " in basket");
         public static void Confused() =>
             Error("Sorry, bad command");
+        public static void CartTotal(string sum) =>
+            Message("Currently total in basket "+ sum);
+        
     }
 }

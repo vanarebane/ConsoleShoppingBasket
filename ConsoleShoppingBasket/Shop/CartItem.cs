@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleShoppingBasket.Shop
 {
-    class BasketItem : InventoryItem
+    class CartItem : InventoryItem
     {
         public int InBasket = 0;
     }

@@ -30,15 +30,15 @@ namespace ConsoleShoppingBasket.Start
 
             var shop = new Cart();
 
-            shop.AddItem(new InventoryItem { Name = "Banana", Price = 2.2, Description = "Yellow and with nice curve" });
-            shop.AddItem(new InventoryItem { Name = "Milk", Price = 3.2, Description = "Goes well with coffee" });
-            shop.AddItem(new InventoryItem { Name = "Bread", Price = 4, Description = "The most expensive we have" });
-            shop.AddItem(new InventoryItem { Name = "Beans", Price = 1.2, Description = "Kidney shaped brown things stored in shiny silver cylinder" });
-            shop.AddItem(new InventoryItem { Name = "Apple", Price = 1599, Description = "This year's model, expires in a year" });
-            shop.AddItem(new InventoryItem { Name = "Beer", Price = 2.5, Description = "It bubbles, it fizzes!" });
-            shop.AddItem(new InventoryItem { Name = "Coffee", Price = 15.5, Description = "Finest brand!" });
-            shop.AddItem(new InventoryItem { Name = "Suggar", Price = 11, Description = "Makes things sweet" });
-            shop.AddItem(new InventoryItem { Name = "Muffins", Price = 3.2, Description = "No raisins included" });
+            shop.AddItem(new CartItem { Name = "Banana", Price = 2.2, Description = "Yellow and with nice curve" });
+            shop.AddItem(new CartItem { Name = "Milk", Price = 3.2, Description = "Goes well with coffee" });
+            shop.AddItem(new CartItem { Name = "Bread", Price = 4, Description = "The most expensive we have" });
+            shop.AddItem(new CartItem { Name = "Beans", Price = 1.2, Description = "Kidney shaped brown things stored in shiny silver cylinder" });
+            shop.AddItem(new CartItem { Name = "Apple", Price = 599, Description = "This year's model, expires in a year" });
+            shop.AddItem(new CartItem { Name = "Beer", Price = 2.5, Description = "It bubbles, it fizzes!" });
+            shop.AddItem(new CartItem { Name = "Coffee", Price = 15.5, Description = "Finest brand!" });
+            shop.AddItem(new CartItem { Name = "Sugar", Price = 11, Description = "Makes things sweet" });
+            shop.AddItem(new CartItem { Name = "Muffin", Price = 3.2, Description = "No raisins included" });
             
             PrintMessage.Hello();
             PrintMessage.Beginning();

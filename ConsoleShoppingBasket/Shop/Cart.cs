@@ -8,93 +8,62 @@ using System.Threading.Tasks;
 namespace ConsoleShoppingBasket.Shop
 {
     class Cart : Inventory
-    {/*
-        internal void addToCart(int i, Double ammount)
+    {
+        public List<CartItem> list = new List<CartItem>();
+        public void AddItem(CartItem item)
         {
-            inBasket[i] = inBasket[i] + ammount;
+            list.Add(item);
         }
-        internal void removeFromCart(int i, Double ammount)
-        {
-            inBasket[i] = inBasket[i] - ammount;
-            if (inBasket[i] < 0) inBasket[i] = 0;
-        }*/
 
         public void Browse()
         {
-            /*bool founditem = false;
-            foreach (int i in index)
+            foreach (CartItem item in list)
             {
-                if (!founditem && itemNames[i].ToString().ToLower() == (string)(object)item)
-                {
-                    founditem = true;
-                    removeFromCart(i, number);
-                    PrintMessage.RemovedItem(inBasket[i] + "x " + itemNames[i]);
-                }
+                Console.WriteLine($"{item.Name} \t${item.Price:0.00}\t {item.Description}");
             }
-            if (!founditem)
-            {
-                PrintMessage.WeDontHave(item);
-            }*/
-
-            PrintMessage.WeDontHave("");
         }
         public void Basket()
         {
-            /*bool founditem = false;
-            foreach (int i in index)
+            if (list.Sum(x => x.InBasket) > 0)
             {
-                if (!founditem && itemNames[i].ToString().ToLower() == (string)(object)item)
+                foreach (CartItem item in list)
                 {
-                    founditem = true;
-                    removeFromCart(i, number);
-                    PrintMessage.RemovedItem(inBasket[i] + "x " + itemNames[i]);
+                    if(item.InBasket > 0)
+                        Console.WriteLine($"{item.InBasket}x\t{item.Name}\t${item.Price:0.00}\t${item.Price * item.InBasket:0.00}");
                 }
             }
-            if (!founditem)
-            {
-                PrintMessage.WeDontHave(item);
-            }*/
-
-            PrintMessage.WeDontHave("");
+            else PrintMessage.EmptyBasket();
         }
-        public void AddToBasket(int number, string item)
+        public void AddToBasket(int amount, string item)
         {
-            /*bool founditem = false;
-            foreach (int i in index)
-            {
-                if (!founditem && itemNames[i].ToString().ToLower() == (string)(object)item)
-                {
-                    founditem = true;
-                    addToCart(i, number);
-                    PrintMessage.AddedItem(number + "x " + itemNames[i]);
-                }
-            }
-            if (!founditem)
+            var select = list.FirstOrDefault(x => x.Name.ToLower() == item);
+            if (select == null)
             {
                 PrintMessage.WeDontHave(item);
-            }*/
-
-            PrintMessage.WeDontHave(item);
-
+            }
+            else
+            {
+                select.InBasket = select.InBasket + amount;
+                PrintMessage.AddedItem(amount + "x " + select.Name);
+            }
         }
-        public void RemoveFromBasket(int number, string item)
+        public void RemoveFromBasket(int amount, string item)
         {
-            /*bool founditem = false;
-            foreach (int i in index)
-            {
-                if (!founditem && itemNames[i].ToString().ToLower() == (string)(object)item)
-                {
-                    founditem = true;
-                    removeFromCart(i, number);
-                    PrintMessage.RemovedItem(inBasket[i] + "x " + itemNames[i]);
-                }
-            }
-            if (!founditem)
+            var select = list.FirstOrDefault(x => x.Name.ToLower() == item);
+            if (select == null)
             {
                 PrintMessage.WeDontHave(item);
-            }*/
-
-            PrintMessage.WeDontHave(item);
+            }
+            else
+            {
+                select.InBasket = select.InBasket - amount;
+                if (select.InBasket < 0) select.InBasket = 0;
+                PrintMessage.RemovedItem(amount + "x " + select.Name);
+            }
+        }
+        public void Total()
+        {
+            PrintMessage.CartTotal($"${list.Sum(x => x.Price * x.InBasket):0.00}");
         }
     }
 }
